@@ -1,0 +1,23 @@
+
+.profile{
+    justify-content: center;
+}
+
+.profileImg{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.file{
+    font-size: smaller;
+
+}
+
+.Info{
+    justify-content: center;
+}
+
+.card{
+    width: 70%;
+}

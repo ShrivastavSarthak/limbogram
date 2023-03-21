@@ -1,0 +1,13 @@
+.Limbogram{
+    
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+}
+
+.Login{
+    width:40%;
+}
+
+.inputArea{
+    max-width: 100px;
+}

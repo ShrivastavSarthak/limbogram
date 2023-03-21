@@ -1,0 +1,36 @@
+.limbogram{
+    
+    font-family: 'Dancing Script', cursive;
+    font-size:40px;
+}
+
+.bottomNav{
+    visibility: hidden;
+}
+
+
+
+/* .NavBar{
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+} */
+
+@media screen and (max-width: 660px)  {
+    .limbogram{
+        font-size: 30px;
+
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .bottomNav{
+        visibility: visible;
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+}
+
+
+
+

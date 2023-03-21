@@ -1,0 +1,49 @@
+
+.profileInfo{
+    justify-content: center;
+}
+
+.profile{
+    width: 200px;
+}
+.Button{
+    height: 35px;
+    padding: 2px 1px 2px 1px;
+    
+}
+.userName{
+    font-size: large;
+}
+ul{
+    list-style-type: none;
+}
+
+.activity{
+    display: flex;
+}
+
+.info{
+    display: list-item;
+    text-align: justify;
+}
+
+
+@media screen and (max-width: 660px) {
+    .profile{
+        width: 150px;
+        padding: 3px;
+    }
+    .profileInfo{
+        justify-content: left;
+    }
+    .info{
+        font-size: small;
+    }
+}
+
+@media screen and (max-width:370px){
+    .profile{
+        width: 100px;
+        height: 100px;
+    }
+}
