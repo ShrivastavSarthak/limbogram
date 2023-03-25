@@ -54,7 +54,7 @@ const Logincomp = (props) => {
 
           className='mx-5'
         >
-          <FormControl variant='standard' >
+          <FormControl sx={{ m: 1, maxwidth: '45ch' }}  variant='standard' >
             <InputLabel htmlFor="standard-adornment-email"> Email</InputLabel>
             <Input
               
@@ -65,7 +65,7 @@ const Logincomp = (props) => {
           </FormControl>
 
 
-          <FormControl variant='standard' >
+          <FormControl sx={{ m: 1, maxwidth: '45ch' }}  variant='standard'className='mt-2' >
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
             <Input
               
@@ -89,7 +89,7 @@ const Logincomp = (props) => {
 
 
           <Fab
-            size={`${showButton} small`}
+            size={showButton ?'medium' : 'small'}
             variant='extended'
             color='primary'
             type="button"

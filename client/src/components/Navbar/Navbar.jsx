@@ -7,19 +7,21 @@ import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 // import ExitToAppTwoToneIcon from '@mui/icons-material/ExitToAppTwoTone';
 import Fab from '@mui/material/Fab'
-import { Button, Popover, Typography } from '@mui/material';
+import { Popover  } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import {useTheme} from '@mui/material';
 
 const SideBar = () => {
-    const width = { maxwidth: "600px" }
     const [anchorEl, setAnchorEl] = useState(null)
+    const theme = useTheme()
 
-    const handleClick = (e) => {
-        setAnchorEl(e.currentTarget)
-    }
+    const toggle =useMediaQuery(theme.breakpoints.up("md"))
 
-    const handleClose = () => {
-        setAnchorEl(null)
-    }
+
+    const handleClick = (e) => {setAnchorEl(e.currentTarget)}
+
+    const handleClose = () => {setAnchorEl(null)}
 
     const open = Boolean(anchorEl)
     const id = open ? "simple-popover" : undefined
@@ -33,7 +35,7 @@ const SideBar = () => {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <Fab size={width ? "large" : "small"} className='mx-4'>
+                            <Fab size ={toggle ? "medium" : "small"}  className='mx-4'>
                                 <Link to="/home" class="nav-link mx-4" href="#">
 
                                     <HomeRoundedIcon />
@@ -41,12 +43,15 @@ const SideBar = () => {
                             </Fab>
                         </li>
                         <li class="nav-item">
-                            <Fab className='mx-4'>
+                            <Fab className='mx-4' size ={toggle ? "medium" : "small"}>
                                 <Link to="/createpost" class="nav-link mx-4" href="#"> <AddCircleRoundedIcon /></Link>
                             </Fab>
                         </li>
                         <li class="nav-item">
-                            <Fab aria-describedby={id} onClick={handleClick} className='mx-4'>
+                            <Fab 
+                            size ={toggle ? "medium" : "small"}
+                             aria-describedby={id} 
+                             onClick={handleClick} className='mx-4'>
                                 <PersonAddAltRoundedIcon />
                             </Fab>
                             <Popover
@@ -70,7 +75,9 @@ const SideBar = () => {
                             </Popover>
                         </li>
                         <li class="nav-item">
-                            <Fab className='mx-4'>
+                            <Fab 
+                            size ={toggle ? "medium" : "small"} 
+                            className='mx-4'>
                                 <Link to="/profile" class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
                             </Fab>
                         </li>
