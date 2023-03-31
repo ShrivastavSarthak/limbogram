@@ -5,13 +5,15 @@ import "./Profile.css"
 import { Button, IconButton } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom'
-
+import Data from "../../mock-data.json"
 const Profile = () => {
   return (
+    
     <Fragment>
       <Navbar />
       <div>
         <center>
+        
           <div className='mt-5 d-flex profileInfo'>
             <img src={ProfileIMg} alt="profile" className='profile  ' />
             <div>

@@ -10,15 +10,13 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const Logincomp = (props) => {
 
   const navigate = useNavigate()
-  const [takeInput, setTakeInput] = useState("")
-  const [takePassword, setTakePassword] = useState("")
-  const [login, setLogin] = useState(false)
 
   const theme = useTheme();
   const showButton = useMediaQuery(theme.breakpoints.up("md"))
 
   const [showPassword, setShowPassword] = useState(false)
 
+  const [credential, setCredential] = useState({email: "", password: "",})
   const handleClinkShowPassword = () => {
     setShowPassword((show) => !show)
   }
@@ -27,22 +25,29 @@ const Logincomp = (props) => {
     e.preventDefault()
   }
 
-  const handleChange = (e) => {
-    setTakeInput(e.target.value)
-  }
+  const handleSubmit =async (e) => {
+    e.preventDefault();
+    const responce = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email: credential.email,password: credential.password })
+    });
+    const json = await responce.json();
+    if (json.success){
+      
+      // SAVE THE AUTH TOKEN AND REDIRECT
+        localStorage.setItem("token",json.authtoken)
+        navigate("/home")
 
-
-  const handlePassword = (e) => {
-    setTakePassword(e.target.value)
-  }
-
-  const handleSubmit = () => {
-    if (takeInput !== "" && takePassword !== "") {
-      setLogin(true)
-      navigate("/home")
-    } else {
-      setLogin(false)
+    }else{
+      alert("Invalid Credentials")
     }
+    }
+  
+  const onChange=(e)=>{
+    setCredential({...credential,[e.target.name]:e.target.value})
   }
 
   return (
@@ -51,15 +56,15 @@ const Logincomp = (props) => {
         <h1 className='Limbogram mt-2'>Limbogram</h1>
 
         <form
-
+          onSubmit={handleSubmit}
           className='mx-5'
         >
           <FormControl sx={{ m: 1, maxwidth: '45ch' }}  variant='standard' >
             <InputLabel htmlFor="standard-adornment-email"> Email</InputLabel>
             <Input
-              
-              onChange={handleChange}
-              value={takeInput}
+              name='email'
+              onChange={onChange}
+              value={credential.email}
               type='email'
             ></Input>
           </FormControl>
@@ -69,8 +74,9 @@ const Logincomp = (props) => {
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
             <Input
               
-              onChange={handlePassword}
-              value={takePassword}
+              onChange={onChange}
+              name="password"
+              value={credential.password}
               id="standard-adornment-password"
               type={showPassword ? 'text' : 'password'}
               endAdornment={
@@ -92,9 +98,7 @@ const Logincomp = (props) => {
             size={showButton ?'medium' : 'small'}
             variant='extended'
             color='primary'
-            type="button"
-            onClick={handleSubmit}
-            value={login}
+            type="Submit"
             className="my-3 px-5 Login btn btn-primary"
           >Login</Fab>
 

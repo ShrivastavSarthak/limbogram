@@ -17,7 +17,7 @@ const AllRoutes = () => {
       <Route path='/Home' element={<Home />} />
       <Route path='/addfriends' element={<Friends />} />
       <Route path='/createpost' element={<Add />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route path='/profile/:id' element={<Profile />} />
       <Route path='/editprofile' element={<EditProfile/>} />
     </Routes>
   )

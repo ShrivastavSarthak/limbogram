@@ -1,3 +1,5 @@
+
+
 .limbogram{
     
     font-family: 'Dancing Script', cursive;
@@ -10,11 +12,13 @@
 
 
 
-/* .NavBar{
-    overflow: hidden;
-    position: fixed;
+.NavBar{
+    z-index: 1;
+    position: -webkit-sticky;
+    position: sticky;
     top: 0;
-} */
+    overflow: hidden;
+}
 
 @media screen and (max-width: 660px)  {
     .limbogram{
