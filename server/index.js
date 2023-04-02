@@ -12,6 +12,9 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/auth',require('./routes/auth'));
+app.use('/api/post',require('./routes/activity'));
+
+
 
 app.listen(port,()=>{
     console.log("listening on port" + port);

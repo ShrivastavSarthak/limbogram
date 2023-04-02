@@ -4,9 +4,11 @@ import ProfileIMg from "../../assets/profile.png"
 import "./Profile.css"
 import { Button, IconButton } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom'
-import Data from "../../mock-data.json"
+import { Link} from 'react-router-dom'
+// import Data from "../../mock-data.json"
 const Profile = () => {
+
+
   return (
     
     <Fragment>

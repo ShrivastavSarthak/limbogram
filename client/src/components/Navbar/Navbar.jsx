@@ -11,6 +11,7 @@ import { IconButton, Popover } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { useTheme } from '@mui/material';
+import Post from '../Post/Post';
 
 const SideBar = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -44,7 +45,9 @@ const SideBar = () => {
                         </li>
                         <li class="nav-item">
                             <Fab className='mx-4' size={toggle ? "medium" : "small"}>
-                                <Link to="/createpost" class="nav-link mx-4" href="#"> <AddCircleRoundedIcon /></Link>
+                            {
+                                toggle ? <Post/> :  <Link to="/createpost" class="nav-link mx-4"  ><AddCircleRoundedIcon /></Link>
+                            }
                             </Fab>
                         </li>
                         <li class="nav-item">
