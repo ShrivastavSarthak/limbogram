@@ -4,16 +4,16 @@ import Data from "../../mock-data.json"
 
 
 const Search = () => {
-    const width = { width: "20%", height: "500px", position: "sticky", top: 0 }
+   
 
     const [query, setquery] = useState("")
 
 
 
     return (
-        <div className=' show card mx-5 mt-5' style={width} >
+        <div className=' show card mx-5 my-5'  >
             <center className='output'>
-                <input className='search mt-3' placeholder='Search your friends' onChange={event => setquery(event.target.value)} />
+                <input className='search my-3' placeholder='Search your friends' onChange={event => setquery(event.target.value)} />
                 {
                     
                     Data.filter(post => {

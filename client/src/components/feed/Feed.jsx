@@ -23,23 +23,25 @@ const Feed = () => {
 
 
   return (
-    <div className='cardArea' >
+    <div className='cardArea mb-5' >
 
       {Data.map(person => {
         return (
-          <center className='cardbox ' key={person.id}>
+          <center className='cardbox  ' key={person.id}>
             <div >
               <Link to={'/profile/' + person.id} className='d-flex m-2 '>
                 <Avatar alt='sarthak' src={person.image} />
                 <h6 className='pt-2 ps-3'>{person.first_name}</h6>
               </Link>
+              <div >
+                <img className='ImageBox' alt='imag' src={person.Url_Image} />
+              </div>
 
-              <img className='ImageBox' alt='imag' src="https://images.unsplash.com/photo-1604537529428-15bcbeecfe4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" />
               <div className='d-flex m-1'>
                 <IconButton onClick={handleTrue} key={person.id}>
                   {isTrue ? <FavoriteBorderIcon /> : <FavoriteIcon />}
                 </IconButton>
-                <Comment/>
+                <Comment />
                 <IconButton>
                   <SendIcon />
                 </IconButton>
@@ -48,7 +50,6 @@ const Feed = () => {
           </center>
         )
       })}
-
     </div>
 
 

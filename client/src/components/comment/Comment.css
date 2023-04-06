@@ -1,12 +1,46 @@
-.style{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    height: 400px;
-    background-color: white;
-    border: 2px solid #000;
-    box-shadow: 24;
-    padding: 4;
+.layout{
+    width: 300px;
+    height: 550px;
+}
+
+@media screen and (max-width: 420px) {
+    .layout{
+        width: 300px;
+        height: 450px;
+    }
+    
+}
+
+.title{
+    float: left;
+    top: 0;
+}
+
+
+.CommentCard{
+    display: flex;
+    overflow: initial;
+    
+}
+
+
+
+.show{
+    z-index: 1;
+}
+
+.hideCard{
+    overflow-y: auto;
+    height: 417px;
+}
+
+@media screen and (max-width: 420px) {
+    .hideCard{
+        overflow-y: auto;
+        height: 323px;
+    }
+}
+
+.hideCard::-webkit-scrollbar{
+    display: none;
 }

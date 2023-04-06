@@ -8,7 +8,7 @@
 } */
 
 .search{
-    max-width: 11rem;
+    width: 15rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,8 +16,10 @@
     position: sticky;
 }
 
+
 .output{
     overflow-y: auto;
+    max-height: 500px;
 }
 
 .output::-webkit-scrollbar{
@@ -29,18 +31,18 @@
     border: black ridge 1px;
     border-radius: 10px;
     margin: 3px;
-    width: 11rem;
+    width: 14rem;
     padding-left: 5px;
 
 }
 
-.show{
-    visibility: visible;
-}
 
-
-@media screen and (max-width:890px) {
-    .show{
-        visibility: hidden;
+@media screen and (max-width: 574px) {
+    .search{
+        width: 12rem;
+        
+    }
+    .box{
+        width: 11rem;
     }
 }

@@ -2,10 +2,30 @@
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
+
+}
+
+.hideOnly{
+    visibility: visible;
+    width: 360px;
+    height: 500px;
+    position: fixed;
+    top: 4rem;
+}
+
+.RightSidebar{
+    top: 6.9rem;
+    position: fixed;
+    justify-content: center;
+    visibility: visible;
 }
 
 @media screen and (max-width: 768px){
+    .hideOnly{
+        visibility: hidden;
+    }
     .place{
         display: block;
     }
 }
+

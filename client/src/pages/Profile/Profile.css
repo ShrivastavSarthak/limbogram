@@ -1,10 +1,13 @@
 
 .profileInfo{
     justify-content: center;
+    
 }
 
 .profile{
-    width: 200px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
 }
 .Button{
     height: 35px;

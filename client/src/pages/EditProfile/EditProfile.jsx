@@ -3,10 +3,11 @@ import Navbar from "../../components/Navbar/Navbar"
 import ProfileImg from "../../assets/profile.png"
 import "./EditProfile.css"
 import { Button } from '@mui/material'
-import Fab from '@mui/material/Fab'
 import Footer from '../../components/footer/footer'
 
 const editProfile = () => {
+
+
     return (
         <Fragment>
             <Navbar />
@@ -37,8 +38,8 @@ const editProfile = () => {
                     <input type="text" placeholder='enter your college' className="form-control mt-3" />
                 </div>
                 <div className=' my-5'>
-                  
-                    <Button  variant="contained" component="label" className='px-5' >
+
+                    <Button variant="contained" component="label" className='px-5' >
                         Submit
                     </Button>
                 </div>

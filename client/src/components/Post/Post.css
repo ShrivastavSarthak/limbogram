@@ -5,10 +5,16 @@
     
 }
 
-.textHere{
-    width: 300px;
+.layout1{
+    width: 800px;
+    height: 450px;
 }
 
-.setPos{
-    display: block;
+.textHere{
+    width: 600px;
+}
+
+.buttonSize{
+    max-width: 40px;
+    float: right;
 }

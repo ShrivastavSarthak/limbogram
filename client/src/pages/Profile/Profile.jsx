@@ -4,22 +4,27 @@ import ProfileIMg from "../../assets/profile.png"
 import "./Profile.css"
 import { Button, IconButton } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Data from "../../mock-data.json"
+import { useParams } from 'react-router-dom'
 // import Data from "../../mock-data.json"
-const Profile = () => {
+const Profile = ({ match, location }) => {
 
+  const params = useParams()
+
+  const userId = params.id
 
   return (
-    
+
     <Fragment>
       <Navbar />
       <div>
         <center>
-        
+
           <div className='mt-5 d-flex profileInfo'>
-            <img src={ProfileIMg} alt="profile" className='profile  ' />
+            <img src={Data[userId-1].image} alt="profile" className='profile ' />
             <div>
-              <h2> <span className='userName'>hey__shrivastav </span>
+              <h2> <span className='userName'>{Data[userId - 1].first_name} {Data[userId - 1].last_name} </span>
                 <Link className='btn' to="/editprofile">
                   <Button size="small" color="success" variant="contained" className='ms-2 Button'>Edit profile</Button>
                 </Link>
@@ -37,6 +42,8 @@ const Profile = () => {
 
 
           </div>
+
+
         </center>
       </div>
     </Fragment>

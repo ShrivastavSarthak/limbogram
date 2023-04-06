@@ -1,0 +1,19 @@
+.friendCard{
+    float: right;
+}
+
+#setButton{
+    float: right;
+    right: 0;
+    position: absolute;
+}
+
+.setvisibility{
+    visibility: visible;
+}
+
+@media screen and (max-width: 1350px) {
+    .setvisibility{
+        visibility: hidden;
+    }
+}

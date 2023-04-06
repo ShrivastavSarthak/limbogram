@@ -35,6 +35,18 @@
     }
 }
 
+.setCard{
+    width: 200px;
+    max-height: 300px;
+}
 
+.setButtonVisibility{
+    visibility: hidden;
+}
 
+@media screen and (max-width:1321px){
+    .setButtonVisibility{
+        visibility: visible;
+    }
+}
 

@@ -12,7 +12,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { useTheme } from '@mui/material';
 import Post from '../Post/Post';
-
+import Modaltemplate from '../../UI/Modaltemplate';
+import Search from "../Search/Search";
 const SideBar = () => {
     const [anchorEl, setAnchorEl] = useState(null)
     const theme = useTheme()
@@ -45,16 +46,24 @@ const SideBar = () => {
                         </li>
                         <li class="nav-item">
                             <Fab className='mx-4' size={toggle ? "medium" : "small"}>
-                            {
-                                toggle ? <Post/> :  <Link to="/createpost" class="nav-link mx-4"  ><AddCircleRoundedIcon /></Link>
-                            }
+                                {
+                                    toggle ? <Post /> : <Link to="/createpost" class="nav-link mx-4"  ><AddCircleRoundedIcon /></Link>
+                                }
                             </Fab>
                         </li>
                         <li class="nav-item">
                             <Fab
                                 size={toggle ? "medium" : "small"}
+                                className='mx-4'>
+                                <Link to="/profile" class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
+                            </Fab>
+                        </li>
+                        <li class="nav-item setButtonVisibility">
+                            <Fab
+                                size={toggle ? "medium" : "small"}
                                 aria-describedby={id}
-                                onClick={handleClick} className='mx-4'>
+                                onClick={handleClick} 
+                                className='mx-4 '>
                                 <PersonAddAltRoundedIcon />
                             </Fab>
                             <Popover
@@ -77,13 +86,7 @@ const SideBar = () => {
                                 </div>
                             </Popover>
                         </li>
-                        <li class="nav-item">
-                            <Fab
-                                size={toggle ? "medium" : "small"}
-                                className='mx-4'>
-                                <Link to="/profile" class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
-                            </Fab>
-                        </li>
+                        
                     </ul>
 
 
@@ -92,7 +95,7 @@ const SideBar = () => {
             </nav>
 
 
-            <nav class="bottomNav navbar fixed-bottom navbar-expand-sm navbar-light bg-light">
+            <nav class="bottomNav navbar  fixed-bottom navbar-expand-sm navbar-light bg-light">
                 <IconButton>
                     <Link to="/home">
                         <HomeRoundedIcon color="action" />
@@ -104,7 +107,13 @@ const SideBar = () => {
                     </Link>
                 </IconButton>
                 <IconButton>
-                    <PersonSearchIcon />
+                    <Modaltemplate title={<PersonSearchIcon />} className="setCard">
+                        <div>
+                            <h6>Search</h6>
+                            <Search/>
+                        </div>
+                    </Modaltemplate>
+
                 </IconButton>
                 <IconButton>
                     <Link to="/addfriends">
