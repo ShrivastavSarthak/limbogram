@@ -12,7 +12,7 @@ const JWT_SECRET = "iAmDon"
 
 
 router.post('/signup', [
-    body("name", "please enter a valid name").isLength({ min: 3 }),
+    body("username", "please enter a valid name").isLength({ min: 3,max:20 }),
     body('email', "please enter a valid email").isEmail(),
     body('password', "password length must be 8 character").isLength({ min: 8 })
 
@@ -33,7 +33,7 @@ router.post('/signup', [
             const secPassword = await bcrypt.hash(req.body.password, salt)
 
             user = await User.create({
-                name: req.body.name,
+                username: req.body.username,
                 email: req.body.email,
                 password: secPassword
             })
