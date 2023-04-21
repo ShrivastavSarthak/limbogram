@@ -14,7 +14,18 @@ import { useTheme } from '@mui/material';
 import Post from '../Post/Post';
 import Modaltemplate from '../../UI/Modaltemplate';
 import Search from "../Search/Search";
+import { useParams } from 'react-router-dom'
+
+
+
+
 const SideBar = () => {
+
+
+
+
+
+
     const [anchorEl, setAnchorEl] = useState(null)
     const theme = useTheme()
 
@@ -55,7 +66,7 @@ const SideBar = () => {
                             <Fab
                                 size={toggle ? "medium" : "small"}
                                 className='mx-4'>
-                                <Link to="/profile" class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
+                                <Link to={`/profile`} class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
                             </Fab>
                         </li>
                         <li class="nav-item setButtonVisibility">

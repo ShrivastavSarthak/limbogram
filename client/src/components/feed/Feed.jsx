@@ -12,12 +12,16 @@ import Comment from '../comment/Comment';
 
 const Feed = () => {
 
-  const [isTrue, setTrue] = useState(false)
+  const [like, setLike] = useState([])
+  const onClickLike = (items) => {
+    let index = like.findIndex((x) => x === items.id)
+    if (index >= 0) like.splice(index, 1);
+    else like.push(items.id)
+    setLike([...like])
+  }
   // const width = { maxWidth: "800px" }
 
-  const handleTrue = () => {
-    setTrue(!isTrue)
-  }
+
 
 
 
@@ -38,8 +42,14 @@ const Feed = () => {
               </div>
 
               <div className='d-flex m-1'>
-                <IconButton onClick={handleTrue} key={person.id}>
-                  {isTrue ? <FavoriteBorderIcon /> : <FavoriteIcon />}
+                <IconButton onClick={onClickLike.bind(this, person)}>
+                  {like.findIndex((x) => x === person.id) >= 0 ? (
+                    <FavoriteIcon />
+                  ) :
+                    (
+                      <FavoriteBorderIcon />
+
+                    )}
                 </IconButton>
                 <Comment />
                 <IconButton>

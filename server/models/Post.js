@@ -18,8 +18,12 @@ const UserSchema = new Schema({
     },
     comment: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "comment"
+            userId: String,
+            userComment: String,
+            commentOn: {
+                type: Date,
+                default: Date.now
+            }
 
         }
     ]
