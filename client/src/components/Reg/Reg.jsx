@@ -11,28 +11,30 @@ const Reg = (props) => {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false)
 
-  const [credentials, setCredentils] = useState({name:"",email:"", password:""})
+  const [credentials, setCredentils] = useState({username:"",email:"", password:""})
 
   const navigate =useNavigate()
 
 
   const handleSubmit= async (e)=>{
     e.preventDefault()
-    const {name,email, password} = credentials
+    const {username,email, password} = credentials
 
     const responce = await fetch("http://localhost:5000/api/auth/signup",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({name,email,password})
+      body: JSON.stringify({username,email,password})
     })
     const json =await responce.json()
-    
+    console.log(json);
     if(json.success){
-      localStorage.setItem("token",json.authtoken)
+      localStorage.setItem("token",json.authToken)
+      localStorage.getItem("token")
       navigate("/home")
     }else{
+      // console.log(Error);
       alert("Invalid credentials")
     }
   }
@@ -69,7 +71,7 @@ const Reg = (props) => {
             </InputLabel>
             <Input
               type='text'
-              name='name'
+              name='username'
               onChange={onChange}
               ></Input>
           </FormControl>

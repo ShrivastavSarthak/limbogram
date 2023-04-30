@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose
+const {ObjectId} = mongoose.Schema.Types
 const UserSchema = new Schema({
     userId: {
-        type: String,
-        required: true
+        type: ObjectId,
+        ref: 'User'
     },
     description: {
         type: String,
         max: 200
     },
-    imgage: {
+    image: {
         type: String
     },
     likes: {

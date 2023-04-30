@@ -12,7 +12,7 @@ const JWT_SECRET = "iAmDon"
 
 
 router.post('/signup', [
-    body("username", "please enter a valid name").isLength({ min: 3,max:20 }),
+    body("username", "please enter a valid name").isLength({ min:3,max:20 }),
     body('email', "please enter a valid email").isEmail(),
     body('password', "password length must be 8 character").isLength({ min: 8 })
 

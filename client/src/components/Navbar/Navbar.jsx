@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Navbar.css'
 import { Link } from 'react-router-dom';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
@@ -14,21 +14,14 @@ import { useTheme } from '@mui/material';
 import Post from '../Post/Post';
 import Modaltemplate from '../../UI/Modaltemplate';
 import Search from "../Search/Search";
-import { useParams } from 'react-router-dom'
-
 
 
 
 const SideBar = () => {
 
-
-
-
-
-
     const [anchorEl, setAnchorEl] = useState(null)
     const theme = useTheme()
-
+    const [userID,setUserID] = useState('')
     const toggle = useMediaQuery(theme.breakpoints.up("md"))
 
 
@@ -38,7 +31,17 @@ const SideBar = () => {
 
     const open = Boolean(anchorEl)
     const id = open ? "simple-popover" : undefined
-
+    useEffect(() => {
+        fetch("http://localhost:5000/api/auth/getuser", {
+          method: "POST",
+          headers: {
+            "auth-token": localStorage.getItem("token")
+          }
+        }).then((res) => res.json()).then((userData) => {
+          console.log(userData);
+          setUserID(userData._id)
+        })
+      }, [])
     return (
         <div className='NavBar'>
 
@@ -66,7 +69,7 @@ const SideBar = () => {
                             <Fab
                                 size={toggle ? "medium" : "small"}
                                 className='mx-4'>
-                                <Link to={`/profile`} class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
+                                <Link to={`/profile/${userID}`} class="nav-link mx-4" href="#"> <AccountBoxRoundedIcon /></Link>
                             </Fab>
                         </li>
                         <li class="nav-item setButtonVisibility">

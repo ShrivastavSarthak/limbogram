@@ -43,6 +43,7 @@ router.post("/addpost", fetchuser, async (req, res) => {
     }
 })
 
+
 // ROUTE 3: Update post using :PUT ------>Login requirements
 
 router.put("/:id", fetchuser, async (req, res) => {

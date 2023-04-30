@@ -38,7 +38,8 @@ const Logincomp = (props) => {
     if (json.success){
       
       // SAVE THE AUTH TOKEN AND REDIRECT
-        localStorage.setItem("token",json.authtoken)
+        localStorage.setItem('token',json.authToken)
+        localStorage.getItem("token")
         navigate("/home")
 
     }else{
