@@ -38,7 +38,7 @@ const SideBar = () => {
             "auth-token": localStorage.getItem("token")
           }
         }).then((res) => res.json()).then((userData) => {
-          console.log(userData);
+        //   console.log(userData);
           setUserID(userData._id)
         })
       }, [])
@@ -135,7 +135,7 @@ const SideBar = () => {
                     </Link>
                 </IconButton>
                 <IconButton>
-                    <Link to="/profile">
+                    <Link to={`/profile/${userID}`}>
                         <AccountBoxRoundedIcon color="action" />
                     </Link>
                 </IconButton>

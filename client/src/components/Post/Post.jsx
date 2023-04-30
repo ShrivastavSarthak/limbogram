@@ -59,10 +59,10 @@ const Post = () => {
             "auth-token": localStorage.getItem("token")
           },
           body: JSON.stringify({ description: body, image: url, userId:id})
-        }).then((res) => res.json()).then(navigate("/home"))
+        }).then((res) => res.json()).then(alert("Post added successfully"))
 
       } catch (error) {
-        console.log(error);
+        alert("post not send")
       }
 
 

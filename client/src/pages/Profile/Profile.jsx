@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from "../../components/Navbar/Navbar"
 import ProfileIMg from "../../assets/profile.png"
 import "./Profile.css"
-import { Button, IconButton } from '@mui/material'
+import { Avatar, Button, IconButton } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Link } from 'react-router-dom'
 // import Data from "../../mock-data.json"
@@ -24,22 +24,26 @@ const Profile = ({ match, location }) => {
   const id = params.id
   // console.log(id);
   const [isFollow, setIsFollow] = useState(false)
+  const[loginUserfollower, setLoginfollower] = useState('')
+  const[loginUserfollowing, setLoginfollowing] = useState('')
+  const[nonLoginUserfollower, setNonLoginfollower] = useState('')
+  const[nonLoginUserfollowing, setNonLoginfollowing] = useState('')
   
 
 
 
-
-  const handleFollow =  async() => {
-     await fetch(`http://localhost:5000/api/users/${id}/follow`, {
+  const handleFollow = async () => {
+    await fetch(`http://localhost:5000/api/users/${id}/follow`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body:
-        JSON.stringify({userId: userID._id})
-    }).then((res) => res.json().then((data)=>{
-      console.log(data);
+        JSON.stringify({ userId: userID._id })
+    }).then((res) => res.json().then((data) => {
+      // console.log(data);
       setIsFollow(true);
+      alert('following')
     }))
   }
 
@@ -50,9 +54,11 @@ const Profile = ({ match, location }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ userId: userID._id })
-    }).then((res) => res.json().then((data)=>{
-      console.log(data);
+    }).then((res) => res.json().then((data) => {
+      // console.log(data);
       setIsFollow(false)
+      alert('follow') 
+
     }))
   }
 
@@ -63,6 +69,8 @@ const Profile = ({ match, location }) => {
       }).then((res) => res.json().then((user) => {
         // console.log(user);
         setUserData(user)
+        setNonLoginfollower(user.followers.length)
+        setNonLoginfollowing(user.following.length)
 
       }))
     }
@@ -78,13 +86,15 @@ const Profile = ({ match, location }) => {
     }).then((res) => res.json()).then((userData) => {
       // console.log(userData);
       setUserID(userData)
+      setLoginfollower(userData.followers.length)
+      setLoginfollowing(userData.following.length)
     })
   }, [])
 
- 
 
-  
- 
+
+
+
 
   return (
 
@@ -94,9 +104,9 @@ const Profile = ({ match, location }) => {
         <center>
 
           <div className='mt-5 d-flex profileInfo'>
-            <img src={ProfileIMg} alt="profile" className='profile ' />
+          <Avatar sx={{ width: 100, height: 100 }}/>
             <div>
-              <h2> <span className='userName'>{userData.username} </span>
+              <h2> <span className='userName'> { userData.username} </span>
                 {
                   userID._id === userData._id ?
                     (
@@ -114,15 +124,27 @@ const Profile = ({ match, location }) => {
 
 
               </h2>
-              <ul className='activity'>
-                <li className='info ms-3'><span>7</span> posts</li>
-                <li className='info ms-3'><spam>319</spam> follower</li>
-                <li className='info ms-3'><spam>284</spam> following</li>
-              </ul>
+
+              {
+                userID._id === userData._id ?
+                  (
+                    <ul className='activity'>
+                      <li className='info ms-3'><spam>{loginUserfollowing} </spam>following </li>
+                      <li className='info ms-3'><spam>{loginUserfollower}</spam> followers</li>
+                    </ul>
+                  ) : (
+                    <ul className='activity'>
+                      <li className='info ms-3'><spam>{nonLoginUserfollowing} </spam>following </li>
+                      <li className='info ms-3'><spam>{nonLoginUserfollower}</spam> followers</li>
+                    </ul>
+                  )
+              }
+
+
               {
                 userID._id === userData._id ?
                   null : (
-                    <Fab  size='small' variant="extended">
+                    <Fab size='small' variant="extended">
                       {isFollow
                         ? <span onClick={handleUnFollow}><PersonRemoveIcon sx={{ mr: 1 }} /> unfollow</span> :
                         <span onClick={handleFollow}><PersonAddIcon sx={{ mr: 1 }} /> follow</span>

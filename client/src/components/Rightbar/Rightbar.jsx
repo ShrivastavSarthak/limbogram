@@ -1,14 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import "./Rightbar.css"
 import { Avatar, Button, IconButton } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const Rightbar = () => {
-
+  const navigate = useNavigate()
   const [userReq, setUserReq] = useState([])
-  const [logout,setLogout] =useState('')
-
+  const [logout, setLogout] = useState([])
+  const Logout = ()=>{
+    localStorage.clear()
+    navigate("/")
+    
+  }
   useEffect(() => {
     fetch("http://localhost:5000/api/users/timeline/user", {
       method: "GET",
@@ -27,8 +31,8 @@ const Rightbar = () => {
       headers: {
         "auth-token": localStorage.getItem("token")
       }
-    }).then((res)=> res.json()).then((user)=>{
-      setLogout(user.username);
+    }).then((res) => res.json()).then((user) => {
+      setLogout(user);
     })
   })
 
@@ -37,16 +41,14 @@ const Rightbar = () => {
     <Fragment >
       <div className='setvisibility card mx-5 friendCard p-2' style={width}>
         <div className='d-flex'>
-          <Link className='d-flex'>
-            <Avatar />
-            <h6 className='mt-2 ms-1'>{logout}</h6>
-          </Link>
-          <Button id='setButton'>Logout</Button>
+          <Avatar />
+          <h6 className='mt-2 ms-1'>{logout.username}</h6>
+          <Button onClick={Logout} id='setButton'>Logout</Button>
         </div>
       </div>
 
       <div className=' setvisibility card mx-5 mt-2 friendCard p-2' style={width}>
-        <h6>Friend request</h6>
+        <h6>Suggested friends</h6>
         {
           userReq.map(person => {
             return (

@@ -1,12 +1,26 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from "../../components/Navbar/Navbar"
 import ProfileImg from "../../assets/profile.png"
 import "./EditProfile.css"
-import { Button } from '@mui/material'
+import { Avatar, Button } from '@mui/material'
 import Footer from '../../components/footer/footer'
 
-const editProfile = () => {
+const EditProfile = () => {
 
+    const[editUser,setEditUser] = useState([])
+    
+    useEffect(() => {
+        fetch("http://localhost:5000/api/auth/getuser", {
+          method: "POST",
+          headers: {
+            "auth-token": localStorage.getItem("token")
+          }
+        }).then((res) => res.json()).then((userData) => {
+          setEditUser(userData)
+         
+        })
+      }, [])
+    
 
     return (
         <Fragment>
@@ -14,7 +28,8 @@ const editProfile = () => {
             <center>
                 <div className='card p-4 mt-5'  >
                     <h4>Display picture</h4>
-                    <img className='my-4 profileImg' src={ProfileImg} alt="profile" />
+                    <Avatar className='my-4 profileImg' sx={{ width: 100, height: 100 }}/>
+                   
                     <Button variant="contained" component="label">
                         Upload
                         <input hidden accept="image/*" multiple type="file" />
@@ -24,9 +39,9 @@ const editProfile = () => {
                     <label className='mt-4'>Name</label>
                     <input type="text" className="form-control mt-3" placeholder='Enter your name' required />
                     <label className='mt-4'>Username</label>
-                    <input type="text" className="form-control mt-3" placeholder='Enter your Username' required />
+                    <input type="text" className="form-control mt-3" placeholder={editUser.username} disabled />
                     <label className='mt-4'>Email id</label>
-                    <input type="email" className="form-control mt-3" placeholder='sharthakshrivastav20112002@gmail.com' disabled />
+                    <input type="email" className="form-control mt-3" placeholder={editUser.email} disabled />
                     <label className='mt-4'>Bio</label>
                     <textarea class="form-control mt-3" aria-label="With textarea"></textarea>
 
@@ -44,9 +59,9 @@ const editProfile = () => {
                     </Button>
                 </div>
             </center>
-            <Footer />
+            
         </Fragment>
     )
 }
 
-export default editProfile
+export default EditProfile

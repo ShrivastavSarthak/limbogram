@@ -4,11 +4,11 @@ const MOdalName = ({ userID }) => {
     const [user, setUser] = useState()
     useEffect(() => {
         const fetchUser = async () => {
-            console.log(userID);
+            // console.log(userID);
             await fetch(`http://localhost:5000/api/users/${userID}`, {
                 method: 'GET'
             }).then((res) => res.json().then((data) => {
-                console.log(data);
+                // console.log(data);
                 setUser(data.username)
             }))
         }

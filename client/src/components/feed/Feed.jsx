@@ -6,7 +6,7 @@ import "./Feed.css"
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 // import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-// import SendIcon from '@mui/icons-material/Send';
+import SendIcon from '@mui/icons-material/Send';
 // import Data from "../../mock-data.json"
 // import Comment from '../comment/Comment';
 import { useNavigate } from "react-router-dom";
@@ -32,6 +32,7 @@ const Feed = () => {
     const authToken = localStorage.getItem("token")
     if (!authToken) {
       navigate("/")
+      alert("Please login")
     }
     fetch("http://localhost:5000/api/post/timeline/post", {
       method: "GET",
@@ -96,11 +97,12 @@ const Feed = () => {
         return (
           <center className='cardbox' key={person.index}>
             <div >
-              <Link to={'/profile/' + person.userId} className='d-flex m-2' style={{ textDecoration: 'none' }}>
-                <Avatar alt='sarthak' src={person.image} />
-               
-                <MOdalName userID={person.userId}/>
-              </Link>
+              <div className='d-flex m-2'>
+                <Link to={'/profile/' + person.userId} style={{ textDecoration: 'none' }}>
+                  <Avatar alt='sarthak' />
+                </Link>
+                <MOdalName userID={person.userId} />
+              </div>
               <p>{person.description}</p>
               <div >
                 <img className='ImageBox' alt={person} src={person.image} />
@@ -123,10 +125,12 @@ const Feed = () => {
                     )}
                 </IconButton>
                 <p>{person.likes.length}</p>
-               
-                
+                <IconButton>
+                  <SendIcon />
+                </IconButton>
 
               </div>
+
             </div>
           </center>
         )
